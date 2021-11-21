@@ -1,4 +1,4 @@
-# A3 - Web Scrawler
+# A3 - Web Crawler
 
 **Must Have Features (Genügend - 4)**
 
