@@ -2,7 +2,7 @@
 
 **Must Have Features (Genügend - 4)**
 
-•	Das Objekt, in unserem Programm eine Playstation 5, muss mehrere Webseiten gleichzeitig abrufen, nach dem Preis suchen und eine Liste davon in ein *csv exportieren können. Mit einer GUI soll das praktizierbar sein.
+•	Das Objekt, in unserem Programm eine Playstation 5, muss mehrere Webseiten gleichzeitig abrufen (Suchabfragen in Threads erstellen), nach dem Preis suchen, und eine Liste davon in ein *csv exportieren können. Mit einer GUI soll das praktizierbar sein.
 
 •   Das *csv File soll dabei für jede zu durchsuchende Webseite eine eigene Spalte haben.
 
