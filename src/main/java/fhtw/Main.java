@@ -1,5 +1,11 @@
 package fhtw;
 import com.google.gson.Gson;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,10 +17,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
@@ -40,39 +43,125 @@ public class Main extends Application {
 
     public static void main(String[] args) throws IOException {
 
-        final String url = "https://www.willhaben.at/iad/kaufen-und-verkaufen/marktplatz/konsolen/playstation-2800?sfId=e382f4e2-8bc3-4cc4-b62a-5721a629b306&rows=25&isNavigation=true&keyword=playstation+5";
+        final String urlWillhaben = "https://www.willhaben.at/iad/kaufen-und-verkaufen/marktplatz/konsolen/playstation-2800?sfId=e382f4e2-8bc3-4cc4-b62a-5721a629b306&rows=25&isNavigation=true&keyword=playstation+5";
 
-
+        final String urlEbay = "https://www.ebay.at/sch/i.html?_from=R40&_trksid=p2380057.m570.l1313&_nkw=Playstation+5&_sacat=0";
 
         try {
 //TODO: Anderen Zeichensatz verwenden, nicht UTF-8 wegen Umlaute und Sonderzeichen (€)
 
-            final Document document = Jsoup.connect(url).get();
 
-/*            for (Element row : document.select(
+            // Willhaben //
+            final Document documentWillhaben = Jsoup.connect(urlWillhaben).get();
 
-                "div.Box-sc-wfmb7k-0.BapResultListContainer___StyledBox-sc-11k8qlr-0.wtbxX.jHgQFl")) {
+            // Mit Jsoup bekommen wir den html-Code
+            Document doc = Jsoup.connect(urlWillhaben).get();
+            String out = doc.getElementById("__NEXT_DATA__").toString();
 
-               System.out.println(row.text());
-               System.out.println(document.select("div.Box-sc-wfmb7k-0.BapResultListContainer___StyledBox-sc-11k8qlr-0.wtbxX.jHgQFl"));
+            /* Das müssen wir löschen von unseren String out: <script id="__NEXT_DATA__" type="application/json">
+               bis </script> */
 
+            StringBuilder outStrForJson = new StringBuilder(out);
+            outStrForJson.delete(0, 51); // Delete <script id="__NEXT_DATA__" type="application/json">
+
+            int lastElement = outStrForJson.lastIndexOf("</script>"); // 275505
+            outStrForJson.delete(lastElement, lastElement + 9); // Delete </script>
+            System.out.println(outStrForJson); // Test OK
+
+
+
+
+            String[] strings = out.split("HEADING\",\"values\":");
+
+
+     /*       for (String s : strings) {
+                System.out.println(s);
+            }*/
+
+  //          System.out.println(strings[0]);
+
+
+
+/*
+
+            System.out.println(out);
+            System.out.println(); */
+
+
+//            System.out.println(documentWillhaben.outerHtml());
+            ArrayList<String> willhabenList = new ArrayList<String>();
+
+
+
+  //          for (Element row : documentWillhaben.select("div.Box-sc-wfmb7k-0.uwLFq")) {
+/*            for (Element row : documentWillhaben.select(".eLrTTy")) {
+
+                // Komplette Beschreibung mit Preis
+                String desc = row.select(".eLrTTy").text();
+
+                // Nur Preis
+                String price = row.select(".gZusnz").text();
+                // Parse price
+                if(price.codePointAt(0) == 8364) {
+                    price = (price.replace("€", ""));
+                }
+
+                willhabenList.add(price);
+                System.out.println(price);
 
             }*/
 
 
-            Elements row = document.select("div.Box-sc-wfmb7k-0.uwLFq");
-//            System.out.println(row.text());
 
-            for(int i = 0; i < 20; i++) {
-                if(row.select("div.eBImnY.Box-sc-wfmb7k-0:nth-of-type(" + i + ")").text().equals("")) {
 
-                } else {
-                    final String tableZero =
-                            row.select("div.eBImnY.Box-sc-wfmb7k-0:nth-of-type(" + i + ")").text();
-                    System.out.println(tableZero);
-                }
 
-            }
+            //TODO: Zeilen so unterteilen wie auf Willhaben
+            // EBAY //
+
+            final Document documentEbay = Jsoup.connect(urlEbay).get();
+
+
+
+
+
+/*           for (Element rowa : documentEbay.select("div.srp-main-content.clearfix.srp-main-content--flex")) {
+               if (rowa.select("span.ITALIC").text().equals("")) {
+
+               } else {
+                   final String table =
+                           rowa.select("span.ITALIC").text();
+                   System.out.println(table);
+
+               }
+
+           }*/
+
+
+
+
+
+
+                    final String table = documentEbay.select("span.ITALIC").text();
+                    System.out.println(table);
+/*                    ArrayList<String> subString = new ArrayList<String>();
+
+
+                    int index = table.indexOf("+",5);
+//                    String subString;
+
+                    if (index != -1) {
+                        subString.add(table.substring(0,index));
+                        System.out.println(subString);
+                    }
+
+
+
+            index = table.indexOf("+",15);
+
+            if (index != -1) {
+                subString.add(table.substring(0,index));
+                System.out.println(subString);
+            }*/
 
 
 
