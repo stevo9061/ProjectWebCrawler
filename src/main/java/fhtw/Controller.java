@@ -33,22 +33,22 @@ private Parent root;
         @FXML
         private Button btn_search;
 
-        @FXML
-        private TextField lbl_Objekt;
+    @FXML
+    private Label lbl_Objekt;
 
-        @FXML
-        private Label txt_Objekt;
+    @FXML
+    private TextField txt_Objekt;
 
         //Wenn der Button Filter betätigt wird, dann wird auf die Filter FXML gewechselt.
 
-    @FXML
+   /* @FXML
     void onFilter(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/Filter.fxml"));
         stage=(Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-    }
+    }*/
 
 
     //Wenn der Button Search betätigt wird, dann wird auf die TabelView FXML gewechselt.
@@ -87,21 +87,21 @@ private Parent root;
 
         // TabelView Gehört noch die Kalsse eingefügt und der Typ (string; Integer;...)
 
-        @FXML
-        private TableView<Search> tbl_TabelView;
+      /*  @FXML
+        private TableView<> tbl_TabelView;
 
         @FXML
-        private TableColumn<Search, String> tbl_objekt;
+        private TableColumn<, String> tbl_objekt;
 
         @FXML
-        private TableColumn<Search, String> tbl_hersteller;
+        private TableColumn<, String> tbl_hersteller;
 
         @FXML
-        private TableColumn<Search, String> tbl_webseite;
+        private TableColumn<, String> tbl_webseite;
 
         @FXML
-        private TableColumn< Search, Integer> tbl_preis;
-
+        private TableColumn< , Integer> tbl_preis;
+*/
         /*ObservableList<Search> searchObservableList = FXCollections.observableArrayList();
 
         @Override
