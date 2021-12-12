@@ -15,6 +15,7 @@
 
 **Should Have Features (Befriedigend - 3)**
 
+• Filter im Tableview setzen und dann in *csv exportieren
 
 
 **Nice to Have Features (Gut - 2)**
