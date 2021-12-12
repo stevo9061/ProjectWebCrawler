@@ -29,15 +29,12 @@ public class Main extends Application {
 
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-
-
+    public void start(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/webCrawler.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
-        primaryStage.show();
+        Scene scene1 = new Scene(root);
+        stage.setScene(scene1);
+        stage.show();
     }
-
     public static void main(String[] args) throws IOException {
 
         final String url = "https://www.willhaben.at/iad/kaufen-und-verkaufen/marktplatz/konsolen/playstation-2800?sfId=e382f4e2-8bc3-4cc4-b62a-5721a629b306&rows=25&isNavigation=true&keyword=playstation+5";
@@ -82,7 +79,7 @@ public class Main extends Application {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
+        launch(args);
     }
 }
 
