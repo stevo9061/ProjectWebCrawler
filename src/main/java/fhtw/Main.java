@@ -31,6 +31,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 
 public class Main extends Application {
@@ -47,10 +48,13 @@ public class Main extends Application {
     public static void main(String[] args) throws IOException {
 
 
-        WebScraper crawl = new WebScraper();
-        crawl.scrapeWH("Playstation 5", 25);
 
+        WebScraper crawl = new WebScraper();
+
+
+        crawl.scrapeWH("Playstation 5", 25);
         crawl.scrapeEB("Playstation 5", 25);
+
 
 //TODO: Anderen Zeichensatz verwenden, nicht UTF-8 wegen Umlaute und Sonderzeichen (€)
 
