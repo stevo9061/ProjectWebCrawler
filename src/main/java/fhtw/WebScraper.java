@@ -1,9 +1,12 @@
+package fhtw;
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 
 import java.io.IOException;
 
@@ -14,7 +17,7 @@ public class WebScraper {
     private String description;
     private String price;
 
-    public void scrapeWH(String keyword) {
+    public void scrapeWH(String keyword, int elements) {
         System.out.println("Starting Willhaben scraper..");
         System.out.println("Searching for " + keyword);
         System.out.println();
@@ -26,8 +29,8 @@ public class WebScraper {
         /** Der User gibt zB Playstation 5 ein, den Whitespace müssen wir abfangen da dieser in der Url mit einem + versehen wird **/
         whUrl.append(keyword.replace(" ", "+"));
 
-        /** Anzahl der auszugebenden Elemente kann hier eingestellt werden, 25, 50 ,100 möglich **/
-        whUrl.append("&rows=100");
+        /** Anzahl der auszugebenden Elemente kann hier eingestellt werden, 25, 50, 100 möglich **/
+        whUrl.append("&rows=" + elements);
 
         try {
 
@@ -70,11 +73,53 @@ public class WebScraper {
 
 
             }
+            System.out.println();
 
         }catch (IOException e) {
             e.printStackTrace();
         }
 
+
+    }
+
+    public void scrapeEB(String keyword, int elements) throws IOException {
+
+        System.out.println("Starting Ebay scraper..");
+        System.out.println("Searching for " + keyword);
+        System.out.println();
+
+        StringBuilder ebUrl = new StringBuilder();
+
+        ebUrl.append("https://www.ebay.at/sch/i.html?_from=R40&_nkw=" + keyword + "&_sacat=0&_ipg=" + elements);
+
+        /** Der User gibt zB Playstation 5 ein, den Whitespace müssen wir abfangen da dieser in der Url mit einem + versehen wird **/
+        ebUrl.append(keyword.replace(" ", "+"));
+
+        /** Anzahl der auszugebenden Elemente kann hier eingestellt werden, 25, 50, 100, 200 möglich **/
+        ebUrl.append(elements); //TODO: Filter wäre cool
+
+        Document documentEbay = Jsoup.connect(ebUrl.toString()).get();
+//        final String table = documentEbay.select("span.ITALIC").text();
+//         System.out.println(table);
+
+        //TODO: Funktioniert nur indem ich alle Preise von der Seite in einer Zeile ausgebe, anders derzeit nicht umsetzbar
+        Elements rowa = documentEbay.select(".srp-results.srp-list.clearfix");
+        String priceEur = rowa.select("span.s-item__price").text();
+        String title = rowa.select(".s-item__title").text();
+
+/*        System.out.println(priceEur);
+        System.out.println(title);*/
+
+//        System.out.println(title); //TODO: Titel vielleicht noch abfragen, aber wie mit Javascript?
+
+
+        /** Es wird das EUR von jeden Preis entfernt **/
+        String[] priceArr = priceEur.split("EUR", 100);
+
+        /** Wir lesen unsere Preise in ein String Array ein **/
+        for (String p : priceArr) {
+            System.out.println(p);
+        }
 
     }
 
