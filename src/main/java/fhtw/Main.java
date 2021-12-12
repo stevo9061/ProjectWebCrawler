@@ -38,15 +38,12 @@ public class Main extends Application {
 
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-
-
+    public void start(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/webCrawler.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
-        primaryStage.show();
+        Scene scene1 = new Scene(root);
+        stage.setScene(scene1);
+        stage.show();
     }
-
     public static void main(String[] args) throws IOException {
 
 
