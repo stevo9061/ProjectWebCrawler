@@ -87,7 +87,7 @@ private Parent root;
 
         // TabelView Gehört noch die Kalsse eingefügt und der Typ (string; Integer;...)
 
-        @FXML
+/*        @FXML
         private TableView<Search> tbl_TabelView;
 
         @FXML
@@ -100,7 +100,7 @@ private Parent root;
         private TableColumn<Search, String> tbl_webseite;
 
         @FXML
-        private TableColumn< Search, Integer> tbl_preis;
+        private TableColumn< Search, Integer> tbl_preis;*/
 
         /*ObservableList<Search> searchObservableList = FXCollections.observableArrayList();
 
