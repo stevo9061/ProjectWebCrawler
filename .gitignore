@@ -1,8 +1,0 @@
-# generated files
-bin/
-
-# Gradle
-.gradle/
-
-# Java class files
-*.class
