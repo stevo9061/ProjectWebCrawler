@@ -39,33 +39,41 @@ public class Main extends Application {
 
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-
-
+    public void start(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/webCrawler.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
-        primaryStage.show();
+        Scene scene1 = new Scene(root);
+        stage.setScene(scene1);
+        stage.show();
     }
+
 
     public static void main(String[] args) throws IOException {
 
 
+        // TODO: Ein weiterer Thread für den Export
+
 
         WebScraper crawl = new WebScraper();
 
-
+        /** We creat one optional Thread for scrape Willhaben **/
+        Thread wh = new Thread();
+        /** Starting first Thread **/
+        wh.start();
         crawl.scrapeWH("Playstation 5", 25);
+
+        /** We create another thread for scrape Ebay **/
+        Thread eb = new Thread();
+        /** Starting second Thread **/
+        eb.start();
         crawl.scrapeEB("Playstation 5", 25);
 
 
 //TODO: Anderen Zeichensatz verwenden, nicht UTF-8 wegen Umlaute und Sonderzeichen (€)
 
-
+        launch(args);
 
 
 
 
     }
 }
-
