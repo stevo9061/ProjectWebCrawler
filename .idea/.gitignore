@@ -6,14 +6,3 @@
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/
-
-#######################################
-# generated files
-build/
-
-# Gradle
-.gradle/
-
-# Java class files
-*.class
-########################################
