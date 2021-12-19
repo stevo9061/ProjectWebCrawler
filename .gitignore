@@ -1,0 +1,10 @@
+#######################################
+# generated files
+build/
+
+# Gradle
+.gradle/
+
+# Java class files
+*.class
+########################################

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="493.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fhtw.Controller">
+    <children>
+        <Label fx:id="lbl_Tabel" layoutX="249.0" layoutY="14.0" text="gefundene Objekte" />
+        <Button fx:id="btn_newSearch" layoutX="509.0" layoutY="454.0" mnemonicParsing="false" onAction="#onnewSearch" text="new_search" />
+        <TableView fx:id="tbl_TabelView" layoutX="5.0" layoutY="137.0" prefHeight="317.0" prefWidth="591.0">
+            <columns>
+                <TableColumn fx:id="tbl_objekt" prefWidth="170.0" text="Objekt" />
+                <TableColumn fx:id="tbl_hersteller" minWidth="0.0" prefWidth="144.0" text="Hersteller" />
+                <TableColumn fx:id="tbl_webseite" prefWidth="143.0" text="WebSeite" />
+                <TableColumn fx:id="tbl_preis" prefWidth="132.0" text="Preis" />
+            </columns>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+            <cursor>
+                <Cursor fx:constant="DEFAULT" />
+            </cursor>
+        </TableView>
+        <Label fx:id="lbl_TabelFilter" layoutX="14.0" layoutY="76.0" text="Filter" />
+        <TextField fx:id="txt_Filter_Objekt" layoutX="5.0" layoutY="112.0" prefHeight="25.0" prefWidth="171.0" promptText="Objekt" />
+        <TextField fx:id="txt_Filter_Hersteller" layoutX="175.0" layoutY="112.0" prefHeight="25.0" prefWidth="144.0" promptText="Hersteler" />
+        <TextField fx:id="txt_Filter_WebSeite" layoutX="319.0" layoutY="112.0" prefHeight="25.0" prefWidth="144.0" promptText="WebSeite" />
+        <TextField fx:id="txt_Filter_Preis" layoutX="463.0" layoutY="112.0" prefHeight="25.0" prefWidth="133.0" promptText="Preis" />
+    </children>
+</AnchorPane>
