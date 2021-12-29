@@ -2,13 +2,14 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fhtw.Controller">
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fhtw.Controller">
     <columnConstraints>
         <ColumnConstraints />
     </columnConstraints>
@@ -16,11 +17,12 @@
         <RowConstraints />
     </rowConstraints>
     <children>
-        <Pane prefHeight="362.0" prefWidth="323.0">
+        <TextArea prefHeight="200.0" prefWidth="200.0" />
+        <Pane prefHeight="544.0" prefWidth="586.0">
             <children>
-                <Button fx:id="btn_search" layoutX="257.0" layoutY="323.0" mnemonicParsing="false" onAction="#onSearch" text="Search" />
-            <TextField fx:id="txt_Objekt" layoutX="134.0" layoutY="77.0" />
-            <Label fx:id="lbl_Objekt" layoutX="48.0" layoutY="81.0" text="Objekt:" />
+                <Button fx:id="btn_Ok" layoutX="26.0" layoutY="220.0" mnemonicParsing="false" onAction="#onOk" prefHeight="25.0" prefWidth="149.0" text="OK" />
+                <TextField fx:id="txt_Textzeile" layoutX="32.0" layoutY="182.0" promptText="Suchbegriff eingeben.." />
+                <Label fx:id="lbl_Search" layoutX="32.0" layoutY="157.0" text="Search:" />
             </children>
         </Pane>
     </children>

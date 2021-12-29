@@ -10,6 +10,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -39,7 +41,7 @@ public class Main extends Application {
 
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/webCrawler.fxml"));
         Scene scene1 = new Scene(root);
         stage.setScene(scene1);
@@ -47,33 +49,33 @@ public class Main extends Application {
     }
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
 
+
+
+        launch(args);
 
         // TODO: Ein weiterer Thread für den Export
 
 
-        WebScraper crawl = new WebScraper();
+/*        WebScraper crawl = new WebScraper();
 
-        /** We creat one optional Thread for scrape Willhaben **/
+        *//** We creat one optional Thread for scrape Willhaben **//*
         Thread wh = new Thread();
-        /** Starting first Thread **/
+       *//** Starting first Thread **//*
         wh.start();
-        crawl.scrapeWH("Playstation 5", 25);
+        crawl.scrapeWH("Playstation 5", 25); */
 
-        /** We create another thread for scrape Ebay **/
+
+
+  /*             *//** We create another thread for scrape Ebay **//*
         Thread eb = new Thread();
-        /** Starting second Thread **/
+        *//** Starting second Thread **//*
         eb.start();
-        crawl.scrapeEB("Playstation 5", 25);
+        crawl.scrapeEB("Playstation 5", 25);*/
 
 
 //TODO: Anderen Zeichensatz verwenden, nicht UTF-8 wegen Umlaute und Sonderzeichen (€)
-
-        launch(args);
-
-
-
 
     }
 }
