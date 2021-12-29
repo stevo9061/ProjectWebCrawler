@@ -4,6 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import javafx.collections.ObservableList;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -16,6 +17,52 @@ public class WebScraper {
     private String id;
     private String description;
     private String price;
+
+    private String tbl_hersteller;
+    private String tbl_objekt;
+    private String tbl_webseite;
+    private String tbl_preis;
+
+
+    WebScraper() {
+
+    }
+
+
+
+    public WebScraper(String tbl_hersteller, String tbl_objekt, String tbl_webseite, String tbl_preis) {
+        this.tbl_hersteller = tbl_hersteller;
+        this.tbl_objekt = tbl_objekt;
+        this.tbl_webseite = tbl_webseite;
+        this.tbl_preis = tbl_preis;
+    }
+
+    WebScraper(String tbl_preis) {
+        this.tbl_preis = tbl_preis;
+    }
+
+
+
+
+    public String getTbl_hersteller() {
+        return tbl_hersteller;
+    }
+
+
+
+
+    public String getTbl_objekt() {
+        return tbl_objekt;
+    }
+
+    public String getTbl_webseite() {
+        return tbl_webseite;
+    }
+
+    public String getTbl_preis() {
+        return tbl_preis;
+    }
+
 
     public void scrapeWH(String keyword, int elements) {
         System.out.println("Starting Willhaben scraper..");
@@ -32,13 +79,20 @@ public class WebScraper {
         /** Anzahl der auszugebenden Elemente kann hier eingestellt werden, 25, 50, 100 möglich **/
         whUrl.append("&rows=" + elements);
 
+        Document doc = null;
+
         try {
 
             /** Mit Jsoup bekommen wir den html-Code **/
-            Document doc = Jsoup.connect(whUrl.toString()).get();
+           doc = Jsoup.connect(whUrl.toString()).get();
 
-            /** Gib uns den String ab __NEXT_DATA__ **/
-            String out = doc.getElementById("__NEXT_DATA__").toString();
+
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+
+           /** Gib uns den String ab __NEXT_DATA__ **/
+           String out = doc.getElementById("__NEXT_DATA__").toString();
 
             /** Um unser json weiter verarbeiten zu können müssen wir den String bereinigen,
              * d.h '<script id="__NEXT_DATA__" type="application/json">' und '</script>' müssen wir löschen. **/
@@ -59,6 +113,8 @@ public class WebScraper {
 
             JsonArray getArray = advertSummaryList.getAsJsonArray("advertSummary");
 
+//            ObservableList<String> table = FXCollections.observableArrayList();
+
             for (JsonElement e : getArray) {
                 JsonObject advertSummaryArray0 = e.getAsJsonObject();
                 String id = advertSummaryArray0.get("id").getAsString();
@@ -67,18 +123,35 @@ public class WebScraper {
 
                 JsonObject attributes = (JsonObject) advertSummaryArray0.get("attributes");
                 JsonArray attribute = (JsonArray) attributes.get("attribute");
-                JsonObject price = attribute.get(12).getAsJsonObject();
+                JsonObject priceJson = attribute.get(12).getAsJsonObject();
+//               System.out.println(id + " + " + description + " + " + price );
 
-                System.out.println(id + " + " + description + " + " + price );
+                /** Convert to String Class */
+                String price = priceJson.toString();
+                StringBuilder outStrForPrice = new StringBuilder(price);
+                outStrForPrice.delete(0, 34);
+                int lastElementPrice = outStrForPrice.lastIndexOf("\"");
+                outStrForPrice.delete(lastElementPrice, lastElementPrice + 3);
 
+                /**  Check if our String has Digits, if not we don't print the output because the searched article has no price. */
+                price = outStrForPrice.toString();
+
+                /**  "^[-.0-9 ]+$" is a regular expression (regex) and means just allow Strings with digits 0-9 and comma (.) */
+                boolean result = price.matches("^[-.0-9 ]+$");
+                if(result) {
+                    System.out.println(price);
+//                    list.add(price); // TODO: In meine Observable List kommen die Elemente JUHU
+
+                }
 
             }
+
+
             System.out.println();
 
-        }catch (IOException e) {
+/*        }catch (IOException e) {
             e.printStackTrace();
-        }
-
+        }*/
 
     }
 
