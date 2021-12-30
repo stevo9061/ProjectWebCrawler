@@ -58,13 +58,13 @@ public class Main extends Application {
         // TODO: Ein weiterer Thread für den Export
 
 
-/*        WebScraper crawl = new WebScraper();
+//        WebScraper crawl = new WebScraper();
 
-        *//** We creat one optional Thread for scrape Willhaben **//*
-        Thread wh = new Thread();
-       *//** Starting first Thread **//*
-        wh.start();
-        crawl.scrapeWH("Playstation 5", 25); */
+        /** We creat one optional Thread for scrape Willhaben **/
+//        Thread wh = new Thread();
+       /** Starting first Thread **/
+//        wh.start();
+//        crawl.scrapeWH("Playstation 5", 25);
 
 
 

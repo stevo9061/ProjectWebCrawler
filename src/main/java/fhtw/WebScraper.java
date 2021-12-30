@@ -4,7 +4,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import javafx.collections.ObservableList;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -12,7 +11,7 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 
 
-public class WebScraper {
+public class WebScraper extends ControllerTableView {
 
     private String id;
     private String description;
@@ -24,31 +23,11 @@ public class WebScraper {
     private String tbl_preis;
 
 
-    WebScraper() {
-
-    }
-
-
-
-    public WebScraper(String tbl_hersteller, String tbl_objekt, String tbl_webseite, String tbl_preis) {
-        this.tbl_hersteller = tbl_hersteller;
-        this.tbl_objekt = tbl_objekt;
-        this.tbl_webseite = tbl_webseite;
-        this.tbl_preis = tbl_preis;
-    }
-
-    WebScraper(String tbl_preis) {
-        this.tbl_preis = tbl_preis;
-    }
-
-
 
 
     public String getTbl_hersteller() {
         return tbl_hersteller;
     }
-
-
 
 
     public String getTbl_objekt() {
@@ -135,12 +114,16 @@ public class WebScraper {
 
                 /**  Check if our String has Digits, if not we don't print the output because the searched article has no price. */
                 price = outStrForPrice.toString();
-
                 /**  "^[-.0-9 ]+$" is a regular expression (regex) and means just allow Strings with digits 0-9 and comma (.) */
-                boolean result = price.matches("^[-.0-9 ]+$");
+              boolean result = price.matches("^[-.0-9 ]+$");
                 if(result) {
-                    System.out.println(price);
-//                    list.add(price); // TODO: In meine Observable List kommen die Elemente JUHU
+                   System.out.println(price);
+                   WebScraper temp = new WebScraper();
+                   temp.tbl_objekt = description;
+                   temp.tbl_hersteller = id;
+                   temp.tbl_webseite = "www.willhaben.at";
+                   temp.tbl_preis = price;
+                   list.add(temp);
 
                 }
 
@@ -149,9 +132,6 @@ public class WebScraper {
 
             System.out.println();
 
-/*        }catch (IOException e) {
-            e.printStackTrace();
-        }*/
 
     }
 

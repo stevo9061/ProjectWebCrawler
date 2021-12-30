@@ -9,16 +9,16 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="493.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fhtw.ControllerTableView">
+<AnchorPane prefHeight="606.0" prefWidth="686.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fhtw.ControllerTableView">
     <children>
-        <Label fx:id="lbl_Tabel" layoutX="249.0" layoutY="14.0" text="Gefundene Elemente" />
-        <Button fx:id="btn_tableviewSearch" layoutX="509.0" layoutY="454.0" mnemonicParsing="false" onAction="#onTable" text="tableview_search" />
-        <TableView fx:id="tbl_TabelView" layoutX="5.0" layoutY="137.0" onSort="#onTableviewSearch" prefHeight="317.0" prefWidth="591.0">
+        <Label fx:id="lbl_Tabel" layoutX="259.0" layoutY="546.0" text="Gefundene Elemente" />
+        <Button fx:id="btn_tableviewSearch" layoutX="491.0" layoutY="555.0" mnemonicParsing="false" onAction="#onTable" text="tableview_search" />
+        <TableView fx:id="tbl_TabelView" layoutX="23.0" layoutY="137.0" onSort="#onTableviewSearch" prefHeight="406.0" prefWidth="635.0">
             <columns>
-                <TableColumn fx:id="tbl_objekt" prefWidth="170.0" text="Objekt" />
-                <TableColumn fx:id="tbl_hersteller" minWidth="0.0" prefWidth="144.0" text="Hersteller" />
-                <TableColumn fx:id="tbl_webseite" prefWidth="143.0" text="Webseite" />
-                <TableColumn fx:id="tbl_preis" prefWidth="132.0" text="Preis" />
+                <TableColumn fx:id="tbl_objekt" prefWidth="219.33331871032715" text="Objekt" />
+                <TableColumn fx:id="tbl_hersteller" minWidth="0.0" prefWidth="140.66661071777344" text="Hersteller" />
+                <TableColumn fx:id="tbl_webseite" prefWidth="135.33328247070312" text="Webseite" />
+                <TableColumn fx:id="tbl_preis" prefWidth="141.3333740234375" text="Preis" />
             </columns>
             <opaqueInsets>
                 <Insets />
@@ -27,10 +27,10 @@
                 <Cursor fx:constant="DEFAULT" />
             </cursor>
         </TableView>
-        <Label fx:id="lbl_TabelFilter" layoutX="14.0" layoutY="76.0" text="Filter" />
-        <TextField fx:id="txt_Filter_Suchbegriff" layoutX="5.0" layoutY="112.0" prefHeight="25.0" prefWidth="171.0" promptText="Suchbegriff" />
-        <TextField fx:id="txt_Filter_Hersteller" layoutX="175.0" layoutY="112.0" prefHeight="25.0" prefWidth="144.0" promptText="Hersteller" />
-        <TextField fx:id="txt_Filter_Webseite" layoutX="319.0" layoutY="112.0" prefHeight="25.0" prefWidth="144.0" promptText="Webseite" />
-        <TextField fx:id="txt_Filter_Preis" layoutX="463.0" layoutY="112.0" prefHeight="25.0" prefWidth="133.0" promptText="Preis" />
+        <Label fx:id="lbl_TabelFilter" layoutX="29.0" layoutY="90.0" text="Filter" />
+        <TextField fx:id="txt_Filter_Suchbegriff" layoutX="23.0" layoutY="112.0" prefHeight="25.0" prefWidth="221.0" promptText="Suchbegriff" />
+        <TextField fx:id="txt_Filter_Hersteller" layoutX="245.0" layoutY="112.0" prefHeight="25.0" prefWidth="138.0" promptText="Hersteller" />
+        <TextField fx:id="txt_Filter_Webseite" layoutX="383.0" layoutY="112.0" prefHeight="25.0" prefWidth="138.0" promptText="Webseite" />
+        <TextField fx:id="txt_Filter_Preis" layoutX="519.0" layoutY="112.0" prefHeight="25.0" prefWidth="138.0" promptText="Preis" />
     </children>
 </AnchorPane>
