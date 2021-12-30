@@ -22,7 +22,15 @@ public class WebScraper extends ControllerTableView {
     private String tbl_webseite;
     private String tbl_preis;
 
+    private String searchName;
 
+    WebScraper() {
+        
+    }
+
+    WebScraper(String searchName) {
+        this.searchName = searchName;
+    }
 
 
     public String getTbl_hersteller() {
@@ -42,6 +50,9 @@ public class WebScraper extends ControllerTableView {
         return tbl_preis;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public void scrapeWH(String keyword, int elements) {
         System.out.println("Starting Willhaben scraper..");
