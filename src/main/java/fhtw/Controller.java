@@ -8,19 +8,34 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 
 
-public class Controller {//implements Initializable
+public class Controller {
 //public class Controller {
-private Stage stage;
-private Scene scene;
-private Parent root;
 
 
+private Stage stage = null;
+private Scene scene = null;
+private Parent root= null;
 
-        //Wenn der Button Filter betätigt wird, dann wird auf die Filter FXML gewechselt.
+    @FXML
+    private Button btn_Ok;
+
+    @FXML
+    private Label lbl_Search;
+
+    @FXML
+    private TextField txt_Textzeile;
+
+    public String searchElement;
+
+
+//   Wenn der Button Filter betätigt wird, dann wird auf die Filter FXML gewechselt.
 //   @FXML //TODO: Brauchen wir das?
 //    void onFilter(ActionEvent event) throws IOException {
 //        root = FXMLLoader.load(getClass().getResource("/Filter.fxml"));
@@ -31,9 +46,23 @@ private Parent root;
 //    }
 
 
+
+
     //Wenn der Button Ok betätigt wird, dann wird auf die TabelView FXML gewechselt.
     @FXML
     void onOk(ActionEvent event) throws IOException {
+
+
+
+        WebScraper test = new WebScraper("Testversuch");
+
+/** String kann direkt übernommen werden, da die Methode getText() eines Textfeldes einen String zurück liefert */
+        searchElement = txt_Textzeile.getText();
+
+        ControllerTableView.arrayList.add(searchElement);
+    //TODO: Mein searchElement kann nicht erfolgreich der ControllerTableView übergeben werden.
+    //TODO: Kann ich nicht hier meinne Webscraper instanzieren und searchname übergeben?
+
 
 
         Parent root = FXMLLoader.load(getClass().getResource("/TabelView.fxml"));
@@ -42,6 +71,9 @@ private Parent root;
         stage.setScene(scene);
         stage.show();
 
+/** I gebe meiner ControllerTableView Klasse das zu suchende Element */
+/*        ControllerTableView temp = new ControllerTableView(searchElement);*/
+//        setSearchElement(searchElement);
 
 
     }
