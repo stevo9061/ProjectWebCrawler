@@ -55,10 +55,10 @@ public class Main extends Application {
 
         launch(args);
 
-        // TODO: Ein weiterer Thread für den Export
+// TODO: Ein weiterer Thread für den Export
 
+//TODO: Threads fehlen noch
 
-//        WebScraper crawl = new WebScraper();
 
         /** We creat one optional Thread for scrape Willhaben **/
 //        Thread wh = new Thread();

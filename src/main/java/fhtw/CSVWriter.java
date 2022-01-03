@@ -76,7 +76,7 @@ public class CSVWriter {
         for (int i = 0; i < values.length; i++) {
             if (i > 0) {
                 this.writer.write(";");
-                this.writer.append("\n"); // new line after ";"
+                this.writer.append("\n"); // added this line: new line after ";"
 
             }
 

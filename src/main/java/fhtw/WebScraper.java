@@ -103,7 +103,6 @@ public class WebScraper extends ControllerTableView {
 
             JsonArray getArray = advertSummaryList.getAsJsonArray("advertSummary");
 
-//            ObservableList<String> table = FXCollections.observableArrayList();
 
             for (JsonElement e : getArray) {
                 JsonObject advertSummaryArray0 = e.getAsJsonObject();
@@ -135,6 +134,7 @@ public class WebScraper extends ControllerTableView {
                    temp.tbl_webseite = "www.willhaben.at";
                    temp.tbl_preis = price;
                    list.add(temp);
+
 
                 }
 
