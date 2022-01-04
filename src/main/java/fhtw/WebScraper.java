@@ -23,6 +23,14 @@ public class WebScraper extends ControllerTableView {
     private String tbl_preis;
 
     private String searchName;
+    Document doc = null;
+
+    public WebScraper(String tbl_hersteller, String tbl_objekt, String tbl_webseite, String tbl_preis) {
+        this.tbl_hersteller = tbl_hersteller;
+        this.tbl_objekt = tbl_objekt;
+        this.tbl_webseite = tbl_webseite;
+        this.tbl_preis = tbl_preis;
+    }
 
     WebScraper() {
         
@@ -54,9 +62,9 @@ public class WebScraper extends ControllerTableView {
         this.description = description;
     }
 
-    public void scrapeWH(String keyword, int elements) {
-        System.out.println("Starting Willhaben scraper..");
-        System.out.println("Searching for " + keyword);
+    public void scrapeWH(String searchElement, String elementNumber) {
+        System.out.println("Starting Willhaben Scraper..");
+        System.out.println("Searching for " + searchElement + ", " + elementNumber + " Elements maximum");
         System.out.println();
 
         StringBuilder whUrl = new StringBuilder();
@@ -64,17 +72,16 @@ public class WebScraper extends ControllerTableView {
         whUrl.append("https://www.willhaben.at/iad/kaufen-und-verkaufen/marktplatz?&isNavigation=true&keyword=");
 
         /** Der User gibt zB Playstation 5 ein, den Whitespace müssen wir abfangen da dieser in der Url mit einem + versehen wird **/
-        whUrl.append(keyword.replace(" ", "+"));
+        whUrl.append(searchElement.replace(" ", "+"));
 
         /** Anzahl der auszugebenden Elemente kann hier eingestellt werden, 25, 50, 100 möglich **/
-        whUrl.append("&rows=" + elements);
+        whUrl.append("&rows=" + elementNumber);
 
-        Document doc = null;
 
         try {
 
             /** Mit Jsoup bekommen wir den html-Code **/
-           doc = Jsoup.connect(whUrl.toString()).get();
+            doc = Jsoup.connect(whUrl.toString()).get();
 
 
         }catch (IOException e) {
@@ -146,6 +153,7 @@ public class WebScraper extends ControllerTableView {
 
     }
 
+    /** Wird derzeit in unserem Programm nicht verwendet da nur der Preis ausgelesen werden kann */
     public void scrapeEB(String keyword, int elements) throws IOException {
 
         System.out.println("Starting Ebay scraper..");
