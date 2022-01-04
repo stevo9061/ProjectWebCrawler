@@ -1,0 +1,26 @@
+.root{
+ /*   -fx-background-color: #049cf4; */
+    -fx-background-color: "white";
+}
+
+
+/* CSS-Styling to an entire class */
+.pane {
+
+}
+
+.label {
+    -fx-font-size: 15 ;
+    -fx-font-family: "Calibri Light" ;
+/*    -fx-text-fill:"white"; */
+    -fx-alinment: center;
+}
+
+.txt_Textzeile {
+    -fx-text-fill:"black";
+}
+
+/* CSS-Styling to an specific label */
+#pane_background{
+  /*  -fx-background-color: "black"; */
+}
