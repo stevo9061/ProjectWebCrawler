@@ -45,10 +45,10 @@ public class ControllerTableView implements Initializable {
     TableView<WebScraper> tbl_TabelView;
 
     @FXML
-    private TableColumn<WebScraper, String> tbl_hersteller;
+    private TableColumn<WebScraper, String> tbl_beschreibung;
 
     @FXML
-    private TableColumn<WebScraper, String> tbl_objekt;
+    private TableColumn<WebScraper, String> tbl_element;
 
     @FXML
     private TableColumn<WebScraper, String> tbl_preis;
@@ -56,25 +56,29 @@ public class ControllerTableView implements Initializable {
     @FXML
     private TableColumn<WebScraper, String> tbl_webseite;
 
+    @FXML
+    private TableColumn<WebScraper, String> tbl_postcode;
+
 
    ObservableList<WebScraper> list = FXCollections.observableArrayList();
    static ArrayList<String> arrayList = new ArrayList<>();
    private ArrayList<WebScraper> myArrayListTwo = new ArrayList<>();
-   private String hersteller = null;
-   private String objekt = null;
+   private String beschreibung = null;
+   private String element = null;
    private String price = null;
    private String webseite = null;
+   private String postcode = null;
 
     /** Hier sind die Attribute von der ControllerTabelview mit denen vom Webscraper verknüpft
         Für jedes column in unserer Table erstellen wir eine Cell Value Factory **/
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        tbl_hersteller.setCellValueFactory(new PropertyValueFactory<WebScraper, String>("tbl_hersteller"));
-        tbl_objekt.setCellValueFactory(new PropertyValueFactory<WebScraper, String>("tbl_objekt"));
+        tbl_beschreibung.setCellValueFactory(new PropertyValueFactory<WebScraper, String>("tbl_beschreibung"));
+        tbl_element.setCellValueFactory(new PropertyValueFactory<WebScraper, String>("tbl_element"));
         tbl_preis.setCellValueFactory(new PropertyValueFactory<WebScraper, String>("tbl_preis"));
         tbl_webseite.setCellValueFactory(new PropertyValueFactory<WebScraper, String>("tbl_webseite"));
-
+        tbl_postcode.setCellValueFactory(new PropertyValueFactory<WebScraper, String>("tbl_postcode"));
 
         WebScraper crawl = new WebScraper();
         // Wir nehmen das searchElement
@@ -83,7 +87,10 @@ public class ControllerTableView implements Initializable {
         // Wir nehmen das searchNumber
         String keywordSearchElement = arrayList.get(1);
 
-        crawl.scrapeWH(keywordSearchElement, keywordElementNumber);
+        // Wir nehmen das searchRegion
+        String keywordRegion = arrayList.get(2);
+
+        crawl.scrapeWH(keywordSearchElement, keywordElementNumber, keywordRegion);
         tbl_TabelView.setItems(crawl.list); // Hinzufügen meiner Observablelist zur Tableview
 
 
@@ -109,16 +116,17 @@ public class ControllerTableView implements Initializable {
                 @Override
                 public void run() {
                     for (int i = 0; tbl_preis.getCellData(i) != null; i++) {
-                        hersteller = tbl_hersteller.getCellData(i);
-                        objekt = tbl_objekt.getCellData(i);
+                        beschreibung = tbl_beschreibung.getCellData(i);
+                        element = tbl_element.getCellData(i);
                         price = tbl_preis.getCellData(i);
                         webseite = tbl_webseite.getCellData(i);
-                        myArrayList.add(hersteller + "; " + objekt + "; " + price + "; " + webseite); //TODO: ArraylistTwo probieren
+                        postcode = tbl_postcode.getCellData(i);
+                        myArrayList.add(beschreibung + "; " + element + "; " + price + "; " + webseite); //TODO: ArraylistTwo probieren
                         System.out.println(price);
 //                      System.out.println(Thread.currentThread() );
 //                      System.out.println(i);
-                        myArrayListTwo.add(new WebScraper(tbl_hersteller.getCellData(i), tbl_objekt.getCellData(i),
-                                tbl_webseite.getCellData(i), tbl_preis.getCellData(i)));
+                        myArrayListTwo.add(new WebScraper(tbl_beschreibung.getCellData(i), tbl_element.getCellData(i),
+                                tbl_webseite.getCellData(i), tbl_preis.getCellData(i), tbl_postcode.getCellData(i) ));
 
 
                     }
@@ -145,14 +153,15 @@ public class ControllerTableView implements Initializable {
             }*/
 
             // Packen in ein String[] Array
-            String[] myArray = new String[myArrayList.size()];
-            int i = 0;
+//            String[] myArray = new String[runnable.myArrayList.size()];
+            String[] myArray = new String[myArrayList.size()]; //TODO: Das Problem ist, das meine myArrayList weggeräumt wird sobald ich aus der run methode bin
+            int i = 0;                                         //TODO: KAnns nur mit der myArrayListTwo probieren aber die is vom Typ <WebScraper>
             for ( String iter : myArrayList) {
                 myArray[i] = myArrayList.get(i);
                 i++;
             }
 
-            willhabenOutput.writeData(myArray);
+            willhabenOutput.writeData(myArray); // TODO: Hier kommt die Exception, deswgen geht csv nicht mehr
             willhabenOutput.close();
 
 
@@ -168,7 +177,7 @@ public class ControllerTableView implements Initializable {
 
         try  {
 
-            excelWriter.createFile("src/main/java/fhtw/WillhabenExport.xls", myArrayListTwo);
+            excelWriter.createFile("src/main/java/fhtw/WillhabenExport.xls", myArrayListTwo); //TODO: Postcode ist null
 
         } catch (Exception e) {
             e.printStackTrace();

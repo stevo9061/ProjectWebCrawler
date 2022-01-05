@@ -11,7 +11,7 @@ public class ExcelWriter {
 
 
     // Spalten der Tabellen bestimmen
-    private String[] columns = {"ID", "Beschreibung", "Preis", "Webseite"};
+    private String[] columns = {"Element", "Postleitzahl", "Beschreibung", "Preis", "Webseite"};
 
 
     public void createFile(String filePath, ArrayList<WebScraper> myArrayListTwo) throws Exception {
@@ -57,10 +57,11 @@ public class ExcelWriter {
 
             Row row = sheet.createRow(rowNum++);
             // In Zeile 0 wird Hersteller erstellt, in Zeile 1 Objekt etc.
-              row.createCell(0).setCellValue(iterator.getTbl_hersteller());
-              row.createCell(1).setCellValue(iterator.getTbl_objekt());
-              row.createCell(2).setCellValue(iterator.getTbl_preis());
-              row.createCell(3).setCellValue(iterator.getTbl_webseite());
+              row.createCell(0).setCellValue(iterator.getTbl_element());
+              row.createCell(1).setCellValue(iterator.getTbl_postcode());
+              row.createCell(2).setCellValue(iterator.getTbl_beschreibung());
+              row.createCell(3).setCellValue(iterator.getTbl_preis());
+              row.createCell(4).setCellValue(iterator.getTbl_webseite());
         }
 
         // Wir gehen jede Spalte durch und passen diese automatisch an dem Text an (Spaltenbreite)

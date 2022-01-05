@@ -17,19 +17,21 @@ public class WebScraper extends ControllerTableView {
     private String description;
     private String price;
 
-    private String tbl_hersteller;
-    private String tbl_objekt;
+    private String tbl_beschreibung;
+    private String tbl_element;
     private String tbl_webseite;
     private String tbl_preis;
+    private String tbl_postcode;
 
     private String searchName;
     Document doc = null;
 
-    public WebScraper(String tbl_hersteller, String tbl_objekt, String tbl_webseite, String tbl_preis) {
-        this.tbl_hersteller = tbl_hersteller;
-        this.tbl_objekt = tbl_objekt;
+    public WebScraper(String tbl_hersteller, String tbl_objekt, String tbl_webseite, String tbl_preis, String tbl_postcode) {
+        this.tbl_beschreibung = tbl_hersteller;
+        this.tbl_element = tbl_objekt;
         this.tbl_webseite = tbl_webseite;
         this.tbl_preis = tbl_preis;
+        this.tbl_postcode = tbl_postcode;
     }
 
     WebScraper() {
@@ -40,14 +42,13 @@ public class WebScraper extends ControllerTableView {
         this.searchName = searchName;
     }
 
-
-    public String getTbl_hersteller() {
-        return tbl_hersteller;
+    /** Die getter benötigen wir damit sie in die Tableview geladen werden */
+    public String getTbl_beschreibung() {
+        return tbl_beschreibung;
     }
 
-
-    public String getTbl_objekt() {
-        return tbl_objekt;
+    public String getTbl_element() {
+        return tbl_element;
     }
 
     public String getTbl_webseite() {
@@ -58,13 +59,17 @@ public class WebScraper extends ControllerTableView {
         return tbl_preis;
     }
 
+    public String getTbl_postcode() {
+        return tbl_postcode;
+    }
+
     public void setDescription(String description) {
         this.description = description;
     }
 
-    public void scrapeWH(String searchElement, String elementNumber) {
+    public void scrapeWH(String searchElement, String searchElementNum, String searchPostcode) {
         System.out.println("Starting Willhaben Scraper..");
-        System.out.println("Searching for " + searchElement + ", " + elementNumber + " Elements maximum");
+        System.out.println("Searching for " + searchElement + ", " + searchElementNum + " Elements maximum");
         System.out.println();
 
         StringBuilder whUrl = new StringBuilder();
@@ -75,7 +80,7 @@ public class WebScraper extends ControllerTableView {
         whUrl.append(searchElement.replace(" ", "+"));
 
         /** Anzahl der auszugebenden Elemente kann hier eingestellt werden, 25, 50, 100 möglich **/
-        whUrl.append("&rows=" + elementNumber);
+        whUrl.append("&rows=" + searchElementNum);
 
 
         try {
@@ -112,39 +117,83 @@ public class WebScraper extends ControllerTableView {
 
 
             for (JsonElement e : getArray) {
+                //Ged Id and description
                 JsonObject advertSummaryArray0 = e.getAsJsonObject();
                 String id = advertSummaryArray0.get("id").getAsString();
                 String description = advertSummaryArray0.get("description").getAsString();
 
 
+                // Get Price
                 JsonObject attributes = (JsonObject) advertSummaryArray0.get("attributes");
                 JsonArray attribute = (JsonArray) attributes.get("attribute");
                 JsonObject priceJson = attribute.get(12).getAsJsonObject();
 //               System.out.println(id + " + " + description + " + " + price );
 
-                /** Convert to String Class */
-                String price = priceJson.toString();
-                StringBuilder outStrForPrice = new StringBuilder(price);
-                outStrForPrice.delete(0, 34);
-                int lastElementPrice = outStrForPrice.lastIndexOf("\"");
-                outStrForPrice.delete(lastElementPrice, lastElementPrice + 3);
+                // Get postcode
+                JsonObject postcodeJson = attribute.get(5).getAsJsonObject();
 
-                /**  Check if our String has Digits, if not we don't print the output because the searched article has no price. */
-                price = outStrForPrice.toString();
-                /**  "^[-.0-9 ]+$" is a regular expression (regex) and means just allow Strings with digits 0-9 and comma (.) */
-              boolean result = price.matches("^[-.0-9 ]+$");
-                if(result) {
-                   System.out.println(price);
-                   WebScraper temp = new WebScraper();
-                   temp.tbl_objekt = description;
-                   temp.tbl_hersteller = id;
-                   temp.tbl_webseite = "www.willhaben.at";
-                   temp.tbl_preis = price;
-                   list.add(temp);
+                /** Convert postcode to String Class */
+                String postcode = postcodeJson.toString(); // "{"name":"POSTCODE","values":["3251"]}"
+                StringBuilder outStrPostcode = new StringBuilder(postcode);
+                outStrPostcode.delete(0,30);
+                int lastElementPostcode = outStrPostcode.lastIndexOf("\"");
+                outStrPostcode.delete(lastElementPostcode, lastElementPostcode + 3);
 
+                /** Check if the postcode from the element matches the user's searched postcode  */
+                postcode = outStrPostcode.toString();
+                /** We allow that either the postcode line could be empty, the first digit is equal or the whole postcode */
+                boolean rest = true;
+                //Wenn in der Suchzeile die Postleitzahl leer ist
+                if(searchPostcode.isEmpty()) {
+                     rest = true;
+                     //Wenn die Plz von der Webseite größer als 5 ist, soll "Keine Postleitzahl enthalten" geschrieben werden.
+                     if(searchPostcode.length() > 5 || (postcode.length() > 5 )) {
+                         postcode = "Keine Postleitzahl enthalten";
+                     }
+                // Wenn in der Suchzeile die Plz nicht leer ist und größer als 5 ist, soll das Programm beendet werden.
+                } else if(searchPostcode.length() > 5 ) {
+                    System.err.println("The program can process a postal code with a maximum of 5 digits");
+                    System.exit(0);
 
+                // Wenn die Plz von der Webseite größer als 5 ist, soll "Keine Postleitzahl enthalten" geschrieben werden.
+                } else if (postcode.length() > 5 ) {
+                    postcode = "Keine Postleitzahl enthalten";
+
+                } else if (postcode.charAt(0) == searchPostcode.charAt(0) || postcode.equals(searchPostcode) ){
+                    rest = true;
+                } else {
+                    rest = false;
+                    System.err.println("Critical Error, undefined Case at check from postcode.");
                 }
+                //CHECK: Mit Plz funktioniert der Code, wenn die Plz größer als 5 ist wird angezeigt "Keine Postleitzahl enthalten".
+                //CHECK: Wenn die Suchzeile bei Plz nicht leer ist und größer als 5 wird das Programm beendet.
 
+                if(rest) {
+
+
+
+                   /** Convert price to String Class */
+                  String price = priceJson.toString();
+                  StringBuilder outStrForPrice = new StringBuilder(price);
+                  outStrForPrice.delete(0, 34);
+                  int lastElementPrice = outStrForPrice.lastIndexOf("\"");
+                  outStrForPrice.delete(lastElementPrice, lastElementPrice + 3);
+
+                    /**  Check if our String has Digits, if not we don't print the output because the searched article has no price. */
+                    price = outStrForPrice.toString();
+                    /**  "^[-.0-9 ]+$" is a regular expression (regex) and means just allow Strings with digits 0-9 and comma (.) */
+                    boolean result = price.matches("^[-.0-9 ]+$");
+                    if(result) {
+                      System.out.println(price);
+                      WebScraper temp = new WebScraper();
+                      temp.tbl_element = description;
+                      temp.tbl_beschreibung = id;
+                      temp.tbl_webseite = "www.willhaben.at";
+                      temp.tbl_preis = price;
+                      temp.tbl_postcode = postcode;
+                      list.add(temp);
+                    }
+                } //TODO: Wenn keine Elemente gefunden wurden soll das Programm beendet werden. In die Kommandozeile schreiben wir keine Einträge gefunden
             }
 
 

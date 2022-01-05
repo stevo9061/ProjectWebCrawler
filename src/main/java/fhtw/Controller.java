@@ -14,10 +14,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 
@@ -39,12 +36,15 @@ private Parent root= null;
     private TextField txt_Textzeile;
 
     @FXML
+    private TextField txt_TextzeileRegion;
+
+    @FXML
     private ComboBox<String> combo;
 
-    //TODO: Attribute auf private stellen wenn möglich
-    public String searchElement;
-    public String searchNumber;
 
+    private String searchElement;
+    private String searchNumber;
+    private String searchRegion;
 
 
 /** Wenn der Button Ok betätigt wird, dann wird auf die TabelView FXML gewechselt. */
@@ -54,12 +54,25 @@ private Parent root= null;
 
 /** String kann direkt übernommen werden, da die Methode getText() eines Textfeldes einen String zurück liefert */
         searchElement = txt_Textzeile.getText();
-/*
-        searchNumber = combo.getTypeSelector();
-*/
         ControllerTableView.arrayList.add(searchElement);
 
 
+        searchRegion = txt_TextzeileRegion.getText();
+  //      for (int i = 0; i < 10; i++) {
+
+
+/*            if (searchRegion == null || searchRegion.trim().isEmpty()) {
+
+
+      //          ControllerTableView.arrayList.add(null);
+
+
+            } else {
+
+            }*/
+ //   }
+
+        ControllerTableView.arrayList.add(searchRegion);
 
         Parent root = FXMLLoader.load(getClass().getResource("/TabelView.fxml"));
         stage=(Stage)((Node)event.getSource()).getScene().getWindow();
@@ -68,7 +81,14 @@ private Parent root= null;
         stage.show();
 
 
+
+
+
+
     }
+
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
