@@ -19,7 +19,7 @@
             <Image url="@Willsearch.jpg" />
          </image>
       </ImageView>
-      <TextField layoutX="194.0" layoutY="341.0" promptText="Suchbegriff eingeben.." />
+      <TextField fx:id="txt_TextzeileRegion" layoutX="194.0" layoutY="341.0" promptText="Suchbegriff eingeben.." />
       <Label layoutX="195.0" layoutY="320.0" text="Suche in Region:" />
       <ComboBox fx:id="combo" layoutX="194.0" layoutY="294.0" onAction="#combo_Ok" prefWidth="150.0" promptText="Anzahl auswählen..." />
       <Label layoutX="194.0" layoutY="276.0" text="Elementanzahl:" />

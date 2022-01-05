@@ -15,10 +15,11 @@
         <Button fx:id="btn_tableviewSearch" layoutX="491.0" layoutY="555.0" mnemonicParsing="false" onAction="#onTable" text="tableview_search" />
         <TableView fx:id="tbl_TabelView" layoutX="23.0" layoutY="137.0" onSort="#onTableviewSearch" prefHeight="406.0" prefWidth="635.0">
             <columns>
-                <TableColumn fx:id="tbl_objekt" prefWidth="219.33331871032715" text="Objekt" />
-                <TableColumn fx:id="tbl_hersteller" minWidth="0.0" prefWidth="140.66661071777344" text="Hersteller" />
-                <TableColumn fx:id="tbl_webseite" prefWidth="135.33328247070312" text="Webseite" />
-                <TableColumn fx:id="tbl_preis" prefWidth="141.3333740234375" text="Preis" />
+                <TableColumn fx:id="tbl_element" prefWidth="95.5" text="Element" />
+            <TableColumn fx:id="tbl_postcode" prefWidth="104.0" text="Postleitzahl" />
+                <TableColumn fx:id="tbl_beschreibung" minWidth="0.0" prefWidth="192.0" text="Beschreibung" />
+                <TableColumn fx:id="tbl_webseite" prefWidth="122.5" text="Webseite" />
+                <TableColumn fx:id="tbl_preis" prefWidth="116.5" text="Preis" />
             </columns>
             <opaqueInsets>
                 <Insets />
