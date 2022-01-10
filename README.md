@@ -2,20 +2,33 @@
 
 **Must Have Features (Genügend - 4)**
 
-•	Das Objekt, in unserem Programm eine Playstation 5, muss mehrere Webseiten gleichzeitig abrufen (Suchabfragen in Threads erstellen), nach dem Preis suchen, und eine Liste davon in ein *csv exportieren können. Mit einer GUI soll das praktizierbar sein.
+•	Es kann nahezu jeder Artikel auf Willhaben gesucht werden.
 
-•   Das *csv File soll dabei für jede zu durchsuchende Webseite eine eigene Spalte haben.
+•   Die Ergebnisse werden in ein *.csv exportiert welches danach über Excel mit nur wenigen Klicks in Spalten aufbereitet werden kann (Eine Dokumentation dazu wurde erstellt und liegt im Repository).
 
-•	Die Liste soll aktualisiert werden wenn der Suchvorgang gestartet wird (Mit den selben Parametern vorausgesetzt).
+•	Die Ergebnisse werden in ein *.xls mit Aufteilung in mehrere Spalten und mit diversen Formatierungen einwandfrei exportiert. Das nachträgliche Aufbereiten des Files entfällt hier. (Externe Libraries in Meilensteinen dokumentieren)
+
+•	Das *.csv & *.xls File wird nach jeden erneuten Start des Programmes ersetzt. (Externe Libraries in Meilensteinen dokumentieren)
+
+•	Absichern des Programmes
 
 •	File I/O check
+
 •	Netzwerk check
+
 •	Multithreading check
+
+•	Kommentieren mit JavaDoc (Noch nicht ganz fertig)
 
 
 **Should Have Features (Befriedigend - 3)**
 
-• Filter im Tableview setzen und dann in *csv exportieren
+•	Filter in der Tableview können gesetzt werden (Funktioniert noch nicht)
+
+•	Weitere Parameter wie maximale Anzahl der zu suchenden Artikel kann eingestellt werden
+
+•	Weitere Parameter wie die Postleitzahl des zu suchenden Artikels kann eingestellt werden
+
 
 
 **Nice to Have Features (Gut - 2)**
