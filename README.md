@@ -14,7 +14,7 @@ https://mvnrepository.com/artifact/org.apache.poi/poi
 
 **Must Have Features (Genügend - 4)**
 
-•	Es kann nahezu jeder Artikel auf Willhaben gesucht werden. (Externe Librarys wurde hier verwendet - Jsoup, Gson)
+•	Es kann nahezu jeder Artikel auf Willhaben gesucht werden. (Externe Libraries wurde hier verwendet - Jsoup, Gson)
 
 •   Die Ergebnisse werden in ein *.csv exportiert welches danach über Excel mit nur wenigen Klicks in Spalten aufbereitet werden kann (Eine Dokumentation dazu wurde erstellt und liegt im Repository).
 
