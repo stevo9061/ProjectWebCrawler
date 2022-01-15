@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -12,12 +11,11 @@
 <AnchorPane prefHeight="606.0" prefWidth="686.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fhtw.ControllerTableView">
     <children>
         <Label fx:id="lbl_Tabel" layoutX="259.0" layoutY="546.0" text="Gefundene Elemente" />
-        <Button fx:id="btn_tableviewSearch" layoutX="491.0" layoutY="555.0" mnemonicParsing="false" onAction="#onTable" text="tableview_search" />
-        <TableView fx:id="tbl_TabelView" layoutX="23.0" layoutY="137.0" onSort="#onTableviewSearch" prefHeight="406.0" prefWidth="635.0">
+        <TableView fx:id="tbl_TableView" layoutX="23.0" layoutY="137.0" onSort="#onTableviewSearch" prefHeight="406.0" prefWidth="635.0">
             <columns>
                 <TableColumn fx:id="tbl_element" prefWidth="95.5" text="Element" />
             <TableColumn fx:id="tbl_postcode" prefWidth="104.0" text="Postleitzahl" />
-                <TableColumn fx:id="tbl_beschreibung" minWidth="0.0" prefWidth="192.0" text="Beschreibung" />
+                <TableColumn fx:id="tbl_id" minWidth="0.0" prefWidth="192.0" text="ID" />
                 <TableColumn fx:id="tbl_webseite" prefWidth="122.5" text="Webseite" />
                 <TableColumn fx:id="tbl_preis" prefWidth="116.5" text="Preis" />
             </columns>

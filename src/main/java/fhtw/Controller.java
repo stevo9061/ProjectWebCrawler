@@ -47,42 +47,28 @@ private Parent root= null;
     private String searchRegion;
 
 
-/** Wenn der Button Ok betätigt wird, dann wird auf die TabelView FXML gewechselt. */
+/**
+ * @param event Wenn der Button btn_Ok betätigt wird, löst es dieses Event aus und es wird auf die TabelView FXML gewechselt.
+ */
     @FXML
     void onOk(ActionEvent event) throws IOException {
 
 
 /** String kann direkt übernommen werden, da die Methode getText() eines Textfeldes einen String zurück liefert */
         searchElement = txt_Textzeile.getText();
+
+/** Ich übergebe den Suchbegriff meiner Arraylist, auf welchen die ControllerTableView dann auch zugreifen kann */
         ControllerTableView.arrayList.add(searchElement);
 
-
         searchRegion = txt_TextzeileRegion.getText();
-  //      for (int i = 0; i < 10; i++) {
-
-
-/*            if (searchRegion == null || searchRegion.trim().isEmpty()) {
-
-
-      //          ControllerTableView.arrayList.add(null);
-
-
-            } else {
-
-            }*/
- //   }
-
         ControllerTableView.arrayList.add(searchRegion);
 
-        Parent root = FXMLLoader.load(getClass().getResource("/TabelView.fxml"));
+/** Hier wechseln wir in das nächste GUI Fenster, zur TableView.fxml */
+        Parent root = FXMLLoader.load(getClass().getResource("/TableView.fxml"));
         stage=(Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
-
-
-
 
 
     }
@@ -101,7 +87,6 @@ private Parent root= null;
     void combo_Ok(ActionEvent event) {
         searchNumber = combo.getValue();
         ControllerTableView.arrayList.add(searchNumber);
-
     }
 
 
