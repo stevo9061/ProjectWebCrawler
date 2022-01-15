@@ -18,7 +18,9 @@ public class ControllerTableView implements Initializable {
 
 
 
-    /** Interacts with TabelView FXML */
+    /**
+     * Interacts with TabelView FXML
+     */
     @FXML
     private Button btn_tableviewSearch;
 
@@ -42,10 +44,10 @@ public class ControllerTableView implements Initializable {
 
 
     @FXML
-    TableView<WebScraper> tbl_TabelView;
+    TableView<WebScraper> tbl_TableView;
 
     @FXML
-    private TableColumn<WebScraper, String> tbl_beschreibung;
+    private TableColumn<WebScraper, String> tbl_id;
 
     @FXML
     private TableColumn<WebScraper, String> tbl_element;
@@ -60,126 +62,137 @@ public class ControllerTableView implements Initializable {
     private TableColumn<WebScraper, String> tbl_postcode;
 
 
-   ObservableList<WebScraper> list = FXCollections.observableArrayList();
+   ObservableList<WebScraper> observableList = FXCollections.observableArrayList();
    static ArrayList<String> arrayList = new ArrayList<>();
    private ArrayList<WebScraper> myArrayListTwo = new ArrayList<>();
-   private String beschreibung = null;
+   private ArrayList<String> arraylistCsv = new ArrayList<>();
+   private String id = null;
    private String element = null;
    private String price = null;
    private String webseite = null;
    private String postcode = null;
 
-    /** Hier sind die Attribute von der ControllerTabelview mit denen vom Webscraper verknüpft
-        Für jedes column in unserer Table erstellen wir eine Cell Value Factory **/
+    /**
+     * Hier sind die Attribute von der ControllerTableview mit denen von der Klasse WebScraper verknüpft.
+     * Für jedes Column in unserer Table erstellen wir eine Cell Value Factory
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        tbl_beschreibung.setCellValueFactory(new PropertyValueFactory<WebScraper, String>("tbl_beschreibung"));
+        tbl_id.setCellValueFactory(new PropertyValueFactory<WebScraper, String>("tbl_id"));
         tbl_element.setCellValueFactory(new PropertyValueFactory<WebScraper, String>("tbl_element"));
         tbl_preis.setCellValueFactory(new PropertyValueFactory<WebScraper, String>("tbl_preis"));
         tbl_webseite.setCellValueFactory(new PropertyValueFactory<WebScraper, String>("tbl_webseite"));
         tbl_postcode.setCellValueFactory(new PropertyValueFactory<WebScraper, String>("tbl_postcode"));
 
         WebScraper crawl = new WebScraper();
-        // Wir nehmen das searchElement
+        // Hier nehmen wir uns die Elementanzahl aus dem ArrayList welches wir in Controller hinzugefügt haben
         String keywordElementNumber = arrayList.get(0);
 
-        // Wir nehmen das searchNumber
+        // Hier nehmen wir uns den Suchbegriff aus dem ArrayList welches wir in Controller hinzugefügt haben
         String keywordSearchElement = arrayList.get(1);
 
-        // Wir nehmen das searchRegion
+        // Hier nehmen wir uns die Plz aus dem ArrayList welches wir in Controller hinzugefügt haben
         String keywordRegion = arrayList.get(2);
 
+        // Hier gehts los, wir starten die Methode von unserem Objekt crawl
         crawl.scrapeWH(keywordSearchElement, keywordElementNumber, keywordRegion);
-        tbl_TabelView.setItems(crawl.list); // Hinzufügen meiner Observablelist zur Tableview
 
+        // Hinzufügen meiner Observablelist zur Tableview
+        tbl_TableView.setItems(crawl.observableList);
 
-/*      String hersteller = null;
-        String objekt = null;
-        String price = null;
-        String webseite = null;           */
         ArrayList<String> myArrayList = new ArrayList<String>();
 
-        // Erstellen eines *.csv Files //TODO: CSV Export geht nimma
-        try {
-            CSVWriter willhabenOutput = new CSVWriter(new File("src/main/java/fhtw/WillhabenExport.csv"), null);
-            String[] arr = {"Ausgabe von " + keywordSearchElement};
-            willhabenOutput.writeHeader(arr);
-            // Cast arrayList to String Array to call method writeData
-            // Packen in ein Arraylist String
 
 
-//            System.out.println(Thread.currentThread());
-            /** Runnable ist eine funktionale Schnittstelle die eine run() Methode enthält
-                In der run() Methode definiere ich was mein Thread abarbeiten soll **/
-            Runnable runnable = new Runnable() {
-                @Override
-                public void run() {
-                    for (int i = 0; tbl_preis.getCellData(i) != null; i++) {
-                        beschreibung = tbl_beschreibung.getCellData(i);
-                        element = tbl_element.getCellData(i);
-                        price = tbl_preis.getCellData(i);
-                        webseite = tbl_webseite.getCellData(i);
-                        postcode = tbl_postcode.getCellData(i);
-                        myArrayList.add(beschreibung + "; " + element + "; " + price + "; " + webseite); //TODO: ArraylistTwo probieren
-                        System.out.println(price);
+
+        /**
+         * Runnable ist eine funktionale Schnittstelle die eine run() Methode enthält
+         * In der run() Methode definiere ich was mein Thread abarbeiten soll
+         */
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+
+                /** Erstellen eines *.csv Files */
+                CSVWriter willhabenOutput = null;
+
+                try {
+                    willhabenOutput = new CSVWriter(new File("src/main/java/fhtw/WillhabenExport.csv"), null);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                // Erste Zeile des *.csv Outputs mit Suchbegriff
+                String[] arr = {"Ausgabe von " + keywordSearchElement};
+
+
+                // Hier schreiben wir die erste Zeile schon in den Stream
+                try {
+                    willhabenOutput.writeHeader(arr);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                /** Wir holen uns hier einzeln die Elemente heraus wie wir möchten, und speichern diese in unsere ArrayList
+                 für das *.csv und *.xls File */
+                for (int i = 0; tbl_preis.getCellData(i) != null; i++) {
+                    id = tbl_id.getCellData(i);
+                    element = tbl_element.getCellData(i);
+                    price = tbl_preis.getCellData(i);
+                    webseite = tbl_webseite.getCellData(i);
+                    postcode = tbl_postcode.getCellData(i);
+                    myArrayList.add(id + "; " + element + "; " + price + "; " + webseite); //TODO: ArraylistTwo probieren
+                    arraylistCsv.add(id + "; " + element + "; " + price + "; " + webseite); //TODO: For CSV, mit dem sollts gehen
+//                        System.out.println(price);
 //                      System.out.println(Thread.currentThread() );
 //                      System.out.println(i);
-                        myArrayListTwo.add(new WebScraper(tbl_beschreibung.getCellData(i), tbl_element.getCellData(i),
-                                tbl_webseite.getCellData(i), tbl_preis.getCellData(i), tbl_postcode.getCellData(i) ));
+                    myArrayListTwo.add(new WebScraper(tbl_id.getCellData(i), tbl_element.getCellData(i),
+                            tbl_webseite.getCellData(i), tbl_preis.getCellData(i), tbl_postcode.getCellData(i) ));
 
-
-                    }
 
                 }
-            };
-            // Ein Thread wird erstmal hergerichtet
-            Thread thread = new Thread( runnable);
-            // Jetzt wird die run() Methode von dem runnable Objekt ausgeführt
-            thread.start();
+                String[] myArray = new String[arraylistCsv.size()];
 
-   /*         for (int i = 0; tbl_preis.getCellData(i) != null; i++) {
-                hersteller = tbl_hersteller.getCellData(i);
-                objekt = tbl_objekt.getCellData(i);
-                price = tbl_preis.getCellData(i);
-                webseite = tbl_webseite.getCellData(i);
-                myArrayList.add(hersteller + "; " + objekt + "; " + price + "; " + webseite);
-                System.out.println(price);
+                int i = 0;
+                for ( String iter : arraylistCsv) {
 
-                myArrayListTwo.add(new WebScraper(tbl_hersteller.getCellData(i), tbl_objekt.getCellData(i),
-                        tbl_webseite.getCellData(i), tbl_preis.getCellData(i)));
+                    myArray[i] = arraylistCsv.get(i);
+                    i++;
+                }
+                try {
+                    willhabenOutput.writeData(myArray);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    willhabenOutput.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
-
-            }*/
-
-            // Packen in ein String[] Array
-//            String[] myArray = new String[runnable.myArrayList.size()];
-            String[] myArray = new String[myArrayList.size()]; //TODO: Das Problem ist, das meine myArrayList weggeräumt wird sobald ich aus der run methode bin
-            int i = 0;                                         //TODO: KAnns nur mit der myArrayListTwo probieren aber die is vom Typ <WebScraper>
-            for ( String iter : myArrayList) {
-                myArray[i] = myArrayList.get(i);
-                i++;
             }
-
-            willhabenOutput.writeData(myArray); // TODO: Hier kommt die Exception, deswgen geht csv nicht mehr
-            willhabenOutput.close();
+        };
 
 
+        // Ein Thread wird erstmal hergerichtet
+        Thread thread = new Thread( runnable);
+        // Jetzt wird die run() Methode von dem runnable Objekt ausgeführt
+        thread.start();
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
-        //Erstellen eines *.xls Files
+
+
+        /** Erstellen eines *.xls Files */
         ExcelWriter excelWriter = new ExcelWriter();
-//        excelWriter.createTest();
-
 
         try  {
 
             excelWriter.createFile("src/main/java/fhtw/WillhabenExport.xls", myArrayListTwo); //TODO: Postcode ist null
 
-        } catch (Exception e) {
+        } catch(Exception e) {
             e.printStackTrace();
         }
 
@@ -190,14 +203,9 @@ public class ControllerTableView implements Initializable {
 
 
     @FXML
-    void onTable(ActionEvent event) {
-
-
-    }
-
-    @FXML
     void onTableviewSearch(ActionEvent event) {
 
+        //TODO: Ist glaub ich fürs sortieren
     }
 
 

@@ -9,20 +9,27 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+/**
+ * @author Stefan Bittgen, Manuel Brüger
+ * @version 1.0.
+ */
+
+
+
 
 
 public class Main extends Application {
-
 
 
     @Override
     public void start(Stage stage) throws Exception {
 
 
-        Parent root = FXMLLoader.load(getClass().getResource("/webCrawler.fxml"));
+
+        Parent root = FXMLLoader.load(getClass().getResource("/Webscraper.fxml"));
         Scene scene1 = new Scene(root);
-        File test = new File("styles/application.css");
-        System.out.println(test.getAbsolutePath());
+        File cssStyling = new File("styles/application.css");
+//        System.out.println(cssStyling.getAbsolutePath());
         scene1.getStylesheets().add(getClass().getResource("/styles/application.css").toExternalForm());
 
         Image image = new Image("/icons/AppIcon.png");
@@ -32,6 +39,7 @@ public class Main extends Application {
         stage.setScene(scene1);
         stage.show();
     }
+
 
 
     public static void main(String[] args) throws Exception {
