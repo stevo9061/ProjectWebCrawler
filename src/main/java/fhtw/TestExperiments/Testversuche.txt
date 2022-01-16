@@ -1,34 +1,34 @@
 #1Testversuch: Playstation 4
 Suche in Region: 1210
 Elementanzahl: 25
-Test erfolgreich, xls ok, csv nicht ok
+Test erfolgreich, xls ok, csv ok
 
 #2Testversuch: Playstation 4
 Suche in Region: 1210
 Elementanzahl: 50
-Test erfolgreich, xls ok, csv nicht ok
+Test erfolgreich, xls ok, csv ok
 
 #3Testversuch: Playstation 4
 Suche in Region: 1210
 Elementanzahl: 100
-Test erfolgreich, xls ok, csv nicht ok
+Test erfolgreich, xls ok, csv ok
 
 #4Testversuch: Playstation 4
 Suche in Region:
 Elementanzahl: 25
-Test erfolgreich, xls ok, csv nicht ok
+Test erfolgreich, xls ok, csv ok
 
 #5Testversuch: Playstation 4
 Suche in Region:
 Elementanzahl: 50
-Test erfolgreich, xls ok, csv nicht ok
+Test erfolgreich, xls ok, csv ok
 
 #6Testversuch: Playstation 4
 Suche in Region:
 Elementanzahl: 100
-Test erfolgreich, xls ok, csv nicht ok
+Test erfolgreich, xls ok, csv ok
 
 #7Testversuch: Playstation 4
 Suche in Region: 1210
 Elementanzahl: 25
-Test erfolgreich, xls ok, csv nicht ok
+Test erfolgreich, xls ok, csv ok

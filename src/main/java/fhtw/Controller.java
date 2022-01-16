@@ -26,7 +26,7 @@ public class Controller implements Initializable {
 
     private Stage stage = null;
     private Scene scene = null;
-    private Parent root = null;
+    final private Parent root = null;
 
     private String searchElement = null;
     private String searchNumber = null;
@@ -57,16 +57,16 @@ public class Controller implements Initializable {
     void onOk(ActionEvent event) throws IOException {
 
 
-/** String can be taken directly, because the method getText() of a text field returns a string */
+        // String can be taken directly, because the method getText() of a text field returns a string
         searchElement = txt_Textzeile.getText();
 
-/** I pass the search term of my array list, which the ControllerTableView can then also access */
+        // I pass the search term of my array list, which the ControllerTableView can then also access
         ControllerTableView.arraylistGlobal.add(searchElement);
 
         searchRegion = txt_TextzeileRegion.getText();
         ControllerTableView.arraylistGlobal.add(searchRegion);
 
-/** Here we switch to the next GUI window, to the TableView.fxml */
+        // Here we switch to the next GUI window, to the TableView.fxml
         Parent root = FXMLLoader.load(getClass().getResource("/TableView.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);

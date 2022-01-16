@@ -7,7 +7,7 @@ import java.io.OutputStreamWriter;
 
 
 /**
- * Helper class to write table data to a csv-file (comma separated values).
+ * Helper class - to write table data to a csv-file (comma separated values).
  * the first line in file is a list of fieldnames, all following lines
  * are data lines.
  * a descptiontion of file format can be found on: http://www.wotsit.org/
@@ -15,20 +15,21 @@ import java.io.OutputStreamWriter;
  * for writing the filename header then add data with writeData.
  * at the end close() closes the file.
  *
- *@author jeberle@users
+ * @author jeberle@users
  */
 
 public class CSVWriter {
 
-    private String             newline = System.getProperty("line.separator");
-    private OutputStreamWriter writer  = null;
-    private int                nbrCols = 0;
-    private int                nbrRows = 0;
+    private String newline = System.getProperty("line.separator");
+    private OutputStreamWriter writer = null;
+    private int nbrCols = 0;
+    private int nbrRows = 0;
 
     /**
      * constructor.
      * creates a csv file for writing data to it
-     * @param file the file to write data to
+     *
+     * @param file     the file to write data to
      * @param encoding encoding to use or null (=defualt)
      * @throws IOException throws an IO exception
      */
@@ -46,6 +47,7 @@ public class CSVWriter {
     /**
      * writes the csv header (fieldnames). should be called after
      * construction one time.
+     *
      * @param header String[] with fieldnames
      * @throws IOException throws an IO exception
      */
@@ -69,13 +71,15 @@ public class CSVWriter {
 
     /**
      * closes the csv file.
+     *
      * @throws IOException throws an IO exception
      */
     public void close() throws IOException {
         this.writer.close();
     }
+
     /**
-     *     @throws IOException throws an IO exception
+     * @throws IOException throws an IO exception
      */
     private void doWriteData(String[] values) throws IOException {
 
@@ -109,7 +113,7 @@ public class CSVWriter {
 
             switch (c) {
 
-                case '"' :
+                case '"':
                     sb.append('"');
                     break;
             }

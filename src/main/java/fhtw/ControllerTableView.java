@@ -69,8 +69,8 @@ public class ControllerTableView implements Initializable {
     ObservableList<WebScraper> observableList = FXCollections.observableArrayList();
 
     static ArrayList<String> arraylistGlobal = new ArrayList<>();
-    private ArrayList<WebScraper> arraylistXls = new ArrayList<>();
-    private ArrayList<String> arraylistCsv = new ArrayList<>();
+    final private ArrayList<WebScraper> arraylistXls = new ArrayList<>();
+    final private ArrayList<String> arraylistCsv = new ArrayList<>();
     private String id = null;
     private String element = null;
     private String price = null;
@@ -78,8 +78,8 @@ public class ControllerTableView implements Initializable {
     private String postcode = null;
 
     /**
-     *  Here the attributes from the ControllerTableview are linked to those from the WebScraper class.
-     *  For each Column in our Table we create a Cell Value Factory.
+     * Here the attributes from the ControllerTableview are linked to those from the WebScraper class.
+     * For each Column in our Table we create a Cell Value Factory.
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -107,15 +107,13 @@ public class ControllerTableView implements Initializable {
         tbl_TableView.setItems(crawl.observableList);
 
 
-        /**
-         * Runnable is a functional interface that contains a run() method.
-         * In the run() method I define what my thread should process
-         */
+        // Runnable is a functional interface that contains a run() method.
+        // In the run() method I define what my thread should process
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
 
-                /** Create a *.csv file */
+                // Create a *.csv file
                 CSVWriter willhabenOutput = null;
 
                 try {
@@ -131,15 +129,17 @@ public class ControllerTableView implements Initializable {
 
                 // Here we write the first line already in the stream
                 try {
+                    assert willhabenOutput != null;
                     willhabenOutput.writeHeader(arr);
 
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
 
-                /** Here we pick out the elements one by one as we like, and store them in our ArrayLists for
-                 *  the *.csv and *.xls file
-                 */
+
+                // Here we pick out the elements one by one as we like, and store them in our ArrayLists for
+                // the *.csv and *.xls file.
+                //
                 for (int i = 0; tbl_preis.getCellData(i) != null; i++) {
                     id = tbl_id.getCellData(i);
                     element = tbl_element.getCellData(i);
@@ -174,13 +174,13 @@ public class ControllerTableView implements Initializable {
         };
 
 
-        // Ein Thread wird erstmal hergerichtet
+        // A thread is prepared first
         Thread thread = new Thread(runnable);
-        // Jetzt wird die run() Methode von dem runnable Objekt ausgeführt
+        // Now the run() method of the runnable object is executed.
         thread.start();
 
 
-        /** Create a *.xls file */
+        // Create a *.xls file
         ExcelWriter excelWriter = new ExcelWriter();
 
         try {
