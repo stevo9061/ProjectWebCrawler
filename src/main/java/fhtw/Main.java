@@ -11,13 +11,12 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
+ * Entry point of our program, the fxml, Stage, Scene, etc is loaded and the program is launched.
+ *
  * @author Stefan Bittgen, Manuel Brüger
  * @version 1.0.
  */
 
-/**
- * Entry point of our program. Fxml is loaded here, the Stage, Scene, etc. is loaded and the program is launched.
- */
 
 public class Main extends Application {
 

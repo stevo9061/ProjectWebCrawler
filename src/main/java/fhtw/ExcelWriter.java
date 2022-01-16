@@ -17,35 +17,27 @@ import java.util.ArrayList;
 public class ExcelWriter {
 
 
-    /**
-     * Determine columns of the tables.
-     */
-    private String[] columns = {"Element", "Postleitzahl", "ID", "Preis", "Webseite"};
+    // Determine columns of the tables.
+    final private String[] columns = {"Element", "Postleitzahl", "ID", "Preis", "Webseite"};
 
     /**
-     * @param filePath Here you enter the path in which the Excel file is to be created.
+     * @param filePath       Here you enter the path in which the Excel file is to be created.
      * @param arraylistExcel Pass an object of type Webscraper with an arraylist.
      */
     public void createFile(String filePath, ArrayList<WebScraper> arraylistExcel) {
 
-        /** Create Excel file
-         *  HSSFWorkbook Class for .xls Excel Files
-         *  XSSFWorkbook Class for .xlsx Excel Files
-         */
+        // Create Excel file
+        // HSSFWorkbook Class for .xls Excel Files
+        // XSSFWorkbook Class for .xlsx Excel Files
 
-        /**
-         * Empty Excel file created
-         */
+
+        // Empty Excel file created
         Workbook workbook = new HSSFWorkbook();
 
-        /**
-         * Formatting in Excel
-         */
+        // Formatting in Excel
         CreationHelper creationHelper = workbook.getCreationHelper();
 
-        /**
-         * Table created in Excel
-         */
+        // Table created in Excel
         Sheet sheet = workbook.createSheet("Willhaben Export");
 
         Font headerFont = workbook.createFont();
@@ -53,21 +45,15 @@ public class ExcelWriter {
         headerFont.setColor(IndexedColors.BLACK.getIndex());
 //        headerFont.setBold((short) 10);
 
-        /**
-         * We have passed our created fonts to one line
-         */
+        // We have passed our created fonts to one line
         CellStyle headerCellStyle = workbook.createCellStyle();
         headerCellStyle.setFont(headerFont);
 
-        /**
-         * Create row, start at 0
-         */
+        // Create row, start at 0
         Row headerRow = sheet.createRow(0);
 
-        /**
-         *  Create content box - Here are the column headers.
-         *  We create our Item, Postcode, ID, Price and Website columns with the defined formatting.
-         */
+        // Create content box - Here are the column headers.
+        // We create our Item, Postcode, ID, Price and Website columns with the defined formatting.
 
         for (int i = 0; i < columns.length; i++) {
             Cell cell = headerRow.createCell(i);
@@ -76,16 +62,13 @@ public class ExcelWriter {
         }
 
 
-        /**
-         * Write objects to table
-         */
+        // Write objects to table
         int rowNum = 1;
         for (WebScraper iterator : arraylistExcel) {
 
             Row row = sheet.createRow(rowNum++);
-            /**
-             *  In line 0 element is created, in line 1 postal code etc.
-             */
+
+            //In line 0 element is created, in line 1 postal code etc.
             row.createCell(0).setCellValue(iterator.getTbl_element());
             row.createCell(1).setCellValue(iterator.getTbl_postcode());
             row.createCell(2).setCellValue(iterator.getTbl_id());
@@ -93,24 +76,19 @@ public class ExcelWriter {
             row.createCell(4).setCellValue(iterator.getTbl_webseite());
         }
 
-        /**
-         * We go through each column and automatically adjust it to the text (column width).
-         */
+        // We traverse through each column and automatically adjust it to the text (column width).
         for (int i = 0; i < columns.length; i++) {
             sheet.autoSizeColumn(i);
         }
 
         try {
-            /**
-             * Write / create file
-             */
+            // Write / create file
             File file = new File(filePath);
 
             FileOutputStream fileOutputStream = new FileOutputStream(file);
             workbook.write(fileOutputStream); //Wir schreiben in den Outputstream
 
             fileOutputStream.close();
-
 
         } catch (FileNotFoundException fileNotFoundException) {
             fileNotFoundException.printStackTrace();

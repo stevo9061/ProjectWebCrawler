@@ -50,7 +50,6 @@ public class WebScraper extends ControllerTableView {
      */
 
 
-
     /**
      * @return is the ID of our Willhaben element
      */
@@ -93,9 +92,10 @@ public class WebScraper extends ControllerTableView {
     /**
      * In this method we get the *.html code from Willhaben and process it further. Here we want to extract from the
      * json data store the information we want to process.
-     * @param searchElement The element the user wants to search
+     *
+     * @param searchElement    The element the user wants to search
      * @param searchElementNum The number of elements to search for (choose from 25, 50, 100)
-     * @param searchPostcode In which postal code to search
+     * @param searchPostcode   In which postal code to search
      */
 
     public void scrapeWH(String searchElement, String searchElementNum, String searchPostcode) {
@@ -276,7 +276,8 @@ public class WebScraper extends ControllerTableView {
     /**
      * Currently not used in our program because only the price can be read, for this, in our opinion, more in-depth
      * knowledge of Javascript is necessary.
-     * @param keyword is the element to be searched
+     *
+     * @param keyword  is the element to be searched
      * @param elements is the number of elements to search for
      * @throws IOException throws an IO exception
      */
