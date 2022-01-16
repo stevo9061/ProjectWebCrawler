@@ -2,6 +2,7 @@ package fhtw;
 
 
 import java.io.File;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,9 +15,9 @@ import javafx.stage.Stage;
  * @version 1.0.
  */
 
-
-
-
+/**
+ * Entry point of our program. Fxml is loaded here, the Stage, Scene, etc. is loaded and the program is launched.
+ */
 
 public class Main extends Application {
 
@@ -24,12 +25,9 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-
-
         Parent root = FXMLLoader.load(getClass().getResource("/Webscraper.fxml"));
         Scene scene1 = new Scene(root);
         File cssStyling = new File("styles/application.css");
-//        System.out.println(cssStyling.getAbsolutePath());
         scene1.getStylesheets().add(getClass().getResource("/styles/application.css").toExternalForm());
 
         Image image = new Image("/icons/AppIcon.png");
@@ -41,13 +39,10 @@ public class Main extends Application {
     }
 
 
-
     public static void main(String[] args) throws Exception {
 
 
-
         launch(args);
-
 
 
     }

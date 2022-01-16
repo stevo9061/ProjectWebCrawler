@@ -7,7 +7,7 @@ import java.io.OutputStreamWriter;
 
 
 /**
- * helper class to write table data to a csv-file (comma separated values).
+ * Helper class to write table data to a csv-file (comma separated values).
  * the first line in file is a list of fieldnames, all following lines
  * are data lines.
  * a descptiontion of file format can be found on: http://www.wotsit.org/
@@ -30,6 +30,7 @@ public class CSVWriter {
      * creates a csv file for writing data to it
      * @param file the file to write data to
      * @param encoding encoding to use or null (=defualt)
+     * @throws IOException throws an IO exception
      */
     public CSVWriter(File file, String encoding) throws IOException {
 
@@ -46,6 +47,7 @@ public class CSVWriter {
      * writes the csv header (fieldnames). should be called after
      * construction one time.
      * @param header String[] with fieldnames
+     * @throws IOException throws an IO exception
      */
     public void writeHeader(String[] header) throws IOException {
 
@@ -59,6 +61,7 @@ public class CSVWriter {
      * same number of elements as the header had.
      *
      * @param data data to write to csv-file
+     * @throws IOException throws an IO exception
      */
     public void writeData(String[] data) throws IOException {
         doWriteData(data);
@@ -66,11 +69,14 @@ public class CSVWriter {
 
     /**
      * closes the csv file.
+     * @throws IOException throws an IO exception
      */
     public void close() throws IOException {
         this.writer.close();
     }
-
+    /**
+     *     @throws IOException throws an IO exception
+     */
     private void doWriteData(String[] values) throws IOException {
 
         for (int i = 0; i < values.length; i++) {

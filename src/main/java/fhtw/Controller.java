@@ -13,18 +13,25 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+/**
+ * Controller class - for interacting with the first GUI window
+ */
 
 
 public class Controller implements Initializable {
 
 
-private Stage stage = null;
-private Scene scene = null;
-private Parent root= null;
+    private Stage stage = null;
+    private Scene scene = null;
+    private Parent root = null;
+
+    private String searchElement = null;
+    private String searchNumber = null;
+    private String searchRegion = null;
+
 
     @FXML
     private Button btn_Ok;
@@ -42,30 +49,26 @@ private Parent root= null;
     private ComboBox<String> combo;
 
 
-    private String searchElement;
-    private String searchNumber;
-    private String searchRegion;
-
-
-/**
- * @param event Wenn der Button btn_Ok betätigt wird, löst es dieses Event aus und es wird auf die TabelView FXML gewechselt.
- */
+    /**
+     * @param event When the btn_Ok button is pressed, it triggers this event and it switches to the TabelView FXML.
+     * @throws IOException throws an IO exception
+     */
     @FXML
     void onOk(ActionEvent event) throws IOException {
 
 
-/** String kann direkt übernommen werden, da die Methode getText() eines Textfeldes einen String zurück liefert */
+/** String can be taken directly, because the method getText() of a text field returns a string */
         searchElement = txt_Textzeile.getText();
 
-/** Ich übergebe den Suchbegriff meiner Arraylist, auf welchen die ControllerTableView dann auch zugreifen kann */
-        ControllerTableView.arrayList.add(searchElement);
+/** I pass the search term of my array list, which the ControllerTableView can then also access */
+        ControllerTableView.arraylistGlobal.add(searchElement);
 
         searchRegion = txt_TextzeileRegion.getText();
-        ControllerTableView.arrayList.add(searchRegion);
+        ControllerTableView.arraylistGlobal.add(searchRegion);
 
-/** Hier wechseln wir in das nächste GUI Fenster, zur TableView.fxml */
+/** Here we switch to the next GUI window, to the TableView.fxml */
         Parent root = FXMLLoader.load(getClass().getResource("/TableView.fxml"));
-        stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -74,7 +77,11 @@ private Parent root= null;
     }
 
 
-
+    /**
+     * The controller can define an initialize() method, which will be called once on an implementing controller
+     * when the contents of its associated document have been completely loaded. This allows the implementing class
+     * to perform any necessary post-processing on the content.
+     */
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -82,11 +89,17 @@ private Parent root= null;
         combo.setItems(list);
     }
 
-
+    /**
+     * @param event If one of the three elements 25, 50 or 100 is selected in the combo box, this selection can be
+     *              further processed and written into an array list.
+     */
     @FXML
     void combo_Ok(ActionEvent event) {
-        searchNumber = combo.getValue();
-        ControllerTableView.arrayList.add(searchNumber);
+        if (combo.getValue().contains("25") || combo.getValue().contains("50") || combo.getValue().contains("100")) {
+            searchNumber = combo.getValue();
+            ControllerTableView.arraylistGlobal.add(searchNumber);
+        } else
+            System.exit(1);
     }
 
 
