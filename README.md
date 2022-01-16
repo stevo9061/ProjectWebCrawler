@@ -31,7 +31,7 @@ CSVWriter
 
 Inside the Project, there's a folder structure, which contains various files as described below:
 
-- `src/.../fhtw/` ... contains all self-created project classes and much more.
+`src/.../fhtw/` ... contains all self-created project classes and much more.
 
 `src/.../fhtw/ExampleFromAJsonWillhaben` contains a small part of the .json file to get an idea of how something like this looks like.
 
@@ -55,43 +55,43 @@ In general, our program is designed in such a way that you can only search for v
 
 **Must Have Features (Genügend - 4)**
 
-•	Es kann nahezu jeder Artikel auf Willhaben gesucht werden. (Externe Libraries wurden hier verwendet - Jsoup, Gson)
+•	Es kann nahezu jeder Artikel auf Willhaben gesucht werden. (Externe Libraries wurden hier verwendet - Jsoup, Gson) **CHECK**
 
-•   Die Ergebnisse werden in ein *.csv exportiert welches danach über Excel mit nur wenigen Klicks in Spalten aufbereitet werden kann (Eine Dokumentation dazu wurde erstellt und liegt im Repository).
+•   Die Ergebnisse werden in ein *.csv exportiert welches danach über Excel mit nur wenigen Klicks in Spalten aufbereitet werden kann (Eine Dokumentation dazu wurde erstellt und liegt im Repository). **CHECK**
 
-•	Die Ergebnisse werden in ein *.xls mit Aufteilung in mehrere Spalten und mit diversen Formatierungen automatisch einwandfrei exportiert. Das nachträgliche Aufbereiten des Files entfällt hier. (Externe Library wurde hier verwendet - Apache POI)
+•	Die Ergebnisse werden in ein *.xls mit Aufteilung in mehrere Spalten und mit diversen Formatierungen automatisch einwandfrei exportiert. Das nachträgliche Aufbereiten des Files entfällt hier. (Externe Library wurde hier verwendet - Apache POI) **CHECK**
 
-•	Das *.csv & *.xls File wird nach jeden erneuten Start des Programmes ersetzt. 
+•	Das *.csv & *.xls File wird nach jeden erneuten Start des Programmes ersetzt. **CHECK**
 
-•	Absichern des Programmes
+•	Absichern des Programmes **CHECK**
 
-•	File I/O check
+•	File I/O **CHECK**
 
-•	Netzwerk check
+•	Netzwerk **CHECK**
 
-•	Multithreading check - Unser Ansatz war hier einen zweiten Thread zu erstellen welcher uns Daten in jeweils ein ArrayList für unser *.xls und einmal für unser *.csv einliest.
+•	Multithreading - Unser Ansatz war hier einen zweiten Thread zu erstellen welcher uns Daten in jeweils ein ArrayList für unser *.xls und einmal für unser *.csv einliest. **CHECK**
 
-•	Kommentieren mit JavaDoc check
+•	Kommentieren mit JavaDoc **CHECK**
 
 
 **Should Have Features (Befriedigend - 3)**
 
-•	Filter in der Tableview (GUI) können gesetzt werden (Funktioniert noch nicht)
+•	Filter in der Tableview (GUI) können gesetzt werden **NO CHECK**
 
-•	Weitere Parameter wie maximale Anzahl der zu suchenden Artikel kann eingestellt werden check
+•	Weitere Parameter wie maximale Anzahl der zu suchenden Artikel kann eingestellt werden **CHECK**
 
-•	Weitere Parameter wie die Postleitzahl des zu suchenden Artikels kann eingestellt werden check
+•	Weitere Parameter wie die Postleitzahl des zu suchenden Artikels kann eingestellt werden **CHECK**
 
 
 
 **Nice to Have Features (Gut - 2)**
 
 
-•	Wir können auch nach Laptops suchen und damit verbunden nach mehreren Marken und verschiedenen Serien, zB. suche Laptop von Marke Dell, HP, Lenovo, Microsoft und der Serie xyz oder nach allen. check
+•	Wir können auch nach Laptops suchen und damit verbunden nach mehreren Marken und verschiedenen Serien, zB. suche Laptop von Marke Dell, HP, Lenovo, Microsoft und der Serie xyz oder nach allen. **CHECK**
 
 **Overkill (Sehr Gut - 1)**
 
-•	GUI eigene Grafiken, Buttons teils check
+•	GUI eigene Grafiken, Buttons teils **CHECK**
 
 
 
