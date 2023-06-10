@@ -98,8 +98,3 @@ After the entries, another window opens and the founded elements are already dis
 **Overkill (Sehr Gut - 1)**
 
 •	GUI eigene Grafiken, Buttons teils **CHECK**
-
-
-
-
-
