@@ -1,10 +1,8 @@
 # A3 - Web Crawler
 
 # General Information
-This project is from Stefan Bittgen:
+This project is from Stefan Bittgen
 
-
-- Stefan Bittgen
 
 # Development process
 
