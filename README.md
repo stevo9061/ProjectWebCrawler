@@ -1,15 +1,20 @@
 # A3 - Web Crawler
 
 # General Information
-This project was built in collaboration, with the team members being:
+This project is from Stefan Bittgen:
 
 
 - Stefan Bittgen
-- Manuel Brüger
 
 # Development process
 
-For our project we started to think about what exactly we want to achieve and what is necessary for it. For this, milestones were recorded with our lecturer which gave us some direction. Then we assigned tasks for each group member to implement basic functions like extracting the necessary (desired) data from https://www.willhaben.at and further processing it and extracting it into an Excel spreadsheet. One of the biggest hurdles was to extract the data from the website. The team's main focus was on stability once we had a working graphical application. After we were able to complete almost all of our objectives, we began documenting our functions with Javadoc and prepared for the completion of the project.
+For my project I started to think about what exactly I want to achieve and what is necessary for it. 
+For this, milestones were recorded with my lecturer which gave me some direction. 
+Then I assigned tasks to implement basic functions like extracting the necessary (desired) data 
+from https://www.willhaben.at and further processing it and extracting it into an Excel spreadsheet. 
+One of the biggest hurdles was to extract the data from the website. 
+The main focus was on stability once I had a working graphical application. 
+After I was able to complete almost all of the objectives, I began documenting the functions with Javadoc and prepared for the completion of the project.
 
 
 # External libraries used
@@ -50,7 +55,7 @@ Inside the Project, there's a folder structure, which contains various files as 
 
  # How to use the program
 
-In general, our program is designed in such a way that you can search for various articles, not only for a playstation 4, you can decide! The user can determine which articles these are with a line of text, the number of elements is fixed at 25, 50, or 100 and the postal code can also be used with a line of text for further limitation. 
+In general, my program is designed in such a way that you can search for various articles, not only for a playstation 4, you can decide! The user can determine which articles these are with a line of text, the number of elements is fixed at 25, 50, or 100 and the postal code can also be used with a line of text for further limitation. 
 After the entries, another window opens and the founded elements are already displayed in a table view. The data export to a *csv and *xls has already been carried out. In the "TestExperiments" folder, there are a few sample inputs that the program should definitely work with, but hopefully other inputs should also be possible without further ado.
 
 
@@ -70,7 +75,7 @@ After the entries, another window opens and the founded elements are already dis
 
 •	Netzwerk **CHECK**
 
-•	Multithreading - Unser Ansatz war hier einen zweiten Thread zu erstellen welcher uns Daten in jeweils ein ArrayList für unser *.xls und einmal für unser *.csv einliest. **CHECK**
+•	Multithreading - Mein Ansatz war hier einen zweiten Thread zu erstellen welcher mir Daten in jeweils ein ArrayList für das *.xls und einmal für das *.csv einliest. **CHECK**
 
 •	Kommentieren mit JavaDoc **CHECK**
 
@@ -88,7 +93,7 @@ After the entries, another window opens and the founded elements are already dis
 **Nice to Have Features (Gut - 2)**
 
 
-•	Wir können auch nach Laptops suchen und damit verbunden nach mehreren Marken und verschiedenen Serien, zB. suche Laptop von Marke Dell, HP, Lenovo, Microsoft und der Serie xyz oder nach allen. **CHECK**
+•	Man kann auch nach Laptops suchen und damit verbunden nach mehreren Marken und verschiedenen Serien, zB. suche Laptop von Marke Dell, HP, Lenovo, Microsoft und der Serie xyz oder nach allen. **CHECK**
 
 **Overkill (Sehr Gut - 1)**
 

@@ -18,6 +18,7 @@ import java.io.OutputStreamWriter;
  * @author jeberle@users
  */
 
+
 public class CSVWriter {
 
     private String newline = System.getProperty("line.separator");

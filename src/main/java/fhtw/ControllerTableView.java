@@ -173,7 +173,6 @@ public class ControllerTableView implements Initializable {
             }
         };
 
-
         // A thread is prepared first
         Thread thread = new Thread(runnable);
         // Now the run() method of the runnable object is executed.

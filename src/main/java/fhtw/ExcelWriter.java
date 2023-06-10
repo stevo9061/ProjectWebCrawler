@@ -16,7 +16,6 @@ import java.util.ArrayList;
 
 public class ExcelWriter {
 
-
     // Determine columns of the tables.
     final private String[] columns = {"Element", "Postleitzahl", "ID", "Preis", "Webseite"};
 

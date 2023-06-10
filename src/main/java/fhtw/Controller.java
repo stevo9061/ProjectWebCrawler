@@ -76,7 +76,6 @@ public class Controller implements Initializable {
 
     }
 
-
     /**
      * The controller can define an initialize() method, which will be called once on an implementing controller
      * when the contents of its associated document have been completely loaded. This allows the implementing class

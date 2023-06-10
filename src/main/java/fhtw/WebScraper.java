@@ -16,9 +16,6 @@ import java.io.IOException;
 
 public class WebScraper extends ControllerTableView {
 
-/*    private String id;
-    private String description;
-    private String price;*/
 
     private String ID;
     private String tbl_element;
